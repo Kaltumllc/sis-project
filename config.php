@@ -1,8 +1,8 @@
 <?php
-$host = "sql100.infinityfree.com";
-$user = "if0_41775045";
-$pass = "S@deeq20562056";
-$db   = "if0_41775045_student_system";
+$host = "mysql.railway.internal";
+$user = "root";
+$pass = "MCEEbZJQpLSoHyZnvakumJNVmUXQteDN";
+$db   = "railway";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
