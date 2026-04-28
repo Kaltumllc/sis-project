@@ -1,8 +1,13 @@
-[phases.setup]
-nixPkgs = ["php82", "php82Extensions.mysqli", "php82Extensions.pdo", "php82Extensions.session", "php82Extensions.mbstring"]
+<?php
+$host = "mysql.railway.internal";
+$user = "root";
+$pass = "MCEEbZJQpLSoHyZnvakumJNVmUXQteDN";
+$db   = "railway";
+$port = 3306;
 
-[phases.build]
-cmds = []
+$conn = mysqli_connect($host, $user, $pass, $db, $port);
 
-[start]
-cmd = "php -S 0.0.0.0:$PORT -t /app"
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+?>
