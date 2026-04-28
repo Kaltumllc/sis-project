@@ -1,22 +1,16 @@
 <?php
 include 'config.php';
 session_start();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim(mysqli_real_escape_string($conn, $_POST['username']));
     $password = trim(mysqli_real_escape_string($conn, $_POST['password']));
-
     $query = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($conn, $query);
-
     if (mysqli_num_rows($result) == 1) {
         $user = mysqli_fetch_assoc($result);
-        
-        // This checks the secure hash OR the backup password '123456'
-        if (password_verify($password, $user['password']) || $password == "123456") {
+        if (password_verify($password, $user['password']) || $password == $user['password']) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-
             if ($user['role'] == 'admin') {
                 header("Location: admin_dash.php");
                 exit();
@@ -32,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
