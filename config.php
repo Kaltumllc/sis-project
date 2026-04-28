@@ -1,12 +1,8 @@
-<?php
-$host = "mysql.railway.internal";
-$user = "root";
-$pass = "MCEEbZJQpLSoHyZnvakumJNVmUXQteDN";
-$db   = "railway";
+[phases.setup]
+nixPkgs = ["php82", "php82Extensions.mysqli", "php82Extensions.pdo", "php82Extensions.session", "php82Extensions.mbstring"]
 
-$conn = mysqli_connect($host, $user, $pass, $db);
+[phases.build]
+cmds = []
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-?>
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t /app"
